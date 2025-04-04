@@ -8,3 +8,6 @@ Proyecto de data del grupo DeltaSquad para nocountry:
 🤖 IA Aplicada: Filtrado Colaborativo, Análisis de Preferencias.
 
 🛠️ Herramientas Gratuitas: En proceso.
+
+Integrantes
+- [X] Lucel Da Silva
