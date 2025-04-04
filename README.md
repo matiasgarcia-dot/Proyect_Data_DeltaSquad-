@@ -11,6 +11,6 @@ Proyecto de data del grupo DeltaSquad para nocountry:
 
 Integrantes
 - [X] Lucel Da Silva
-- [X] Agustin Garcia
+- [X] Agustín Garcia
 - [X] Macarena Muños
-- [X] Matias Garcia
+- [X] Matías Garcia
