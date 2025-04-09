@@ -1,16 +1,7 @@
-
-# Cada clase es una pantalla:
-#   - MainView: la pantalla de inicio (título, subtítulo, botón).
-#   - NameInputView: solicita el nombre al usuario.
-#   - MovieRatingView: permite al usuario hacer las calificaciones.
-#   - RecommendationsView: recomendaciones de peliculas
-# Cada vista es una clase que hereda de tk.Frame.
-
 import tkinter as tk
 from tkinter import ttk, messagebox
-from utils import center_window, create_styled_button
-from PIL import Image, ImageTk
-import os
+from gui.utils import center_window, create_styled_button
+
 
 class MainView:
     def __init__(self, parent, controller):
@@ -37,29 +28,15 @@ class MainView:
         self.center_frame = tk.Frame(self.frame, bg="#ADD8E6")
         self.center_frame.pack(expand=True)
         
-        # Título Imagen
-        logo_path= os.path.join("assets", "filmia_logo.png")
-        try:
-            image = Image.open(logo_path)
-            image = image.resize((600, 180), Image.Resampling.LANCZOS)
-            self.logo_image = ImageTk.PhotoImage(image)
-            self.logo_label = tk.Label(
-                self.center_frame,
-                image=self.logo_image,
-                bg="#ADD8E6"
-            )
-            self.logo_label.pack(pady=(0,10))
-        except Exception as e:
-            print(f"Error cargando la imagen: {e}")
-            # Fallback en caso de error
-            self.logo_label = tk.Label(
-                self.center_frame,
-                text="FilmIA",
-                font=("Arial", 36, "bold"),
-                bg="#ADD8E6",
-                fg="#1E3A8A"
-            )
-            self.logo_label.pack(pady=(0,10))
+        # Título
+        self.title_label = tk.Label(
+            self.center_frame,
+            text="FilmIA",
+            font=("Arial", 36, "bold"),
+            bg="#ADD8E6",
+            fg="#1E3A8A"  # Azul oscuro para el título
+        )
+        self.title_label.pack(pady=(0, 10))
         
         # Subtítulo
         self.subtitle_label = tk.Label(
