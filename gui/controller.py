@@ -1,4 +1,9 @@
-from gui.views import MainView, NameInputView, MovieRatingView, RecommendationsView
+
+# Crea la ventana principal (Tk), gestiona las distintas "pantallas" o vistas
+# (MainView, NameInputView, etc.).
+# También carga el CSV al iniciar y lo guarda en self.movie_data para compartirlo entre vistas.
+
+from views import MainView, NameInputView, MovieRatingView, RecommendationsView
 
 class FilmIAController:
     def __init__(self, root):
