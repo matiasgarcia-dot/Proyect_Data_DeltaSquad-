@@ -18,7 +18,7 @@ def create_styled_button(parent, text, command):
         "Styled.TButton",
         font=("Arial", 12, "bold"),
         background="#3366CC",
-        foreground="white",
+        foreground="black",
         padding=10
     )
     
