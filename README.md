@@ -19,11 +19,13 @@ La data usada es un csv de peliculas de esta pagina: https://www.kaggle.com/data
 ---
 ## 🧪 Instalación
 
-Recuerda activar el entorno virtual para trabajar bien!!
+Recuerda CREAR un entorno virtual para trabajar bien!!
 Windows:
+Para crearlo:
+python -m venv <nombred entorno>
 
 Para activarlo:
-venv/scripts/activate
+nombred entorno/scripts/activate
 
 
 ---
