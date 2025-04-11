@@ -1,2 +1,3 @@
 # Proyect_Data_DeltaSquad-
-Proyecto de data del grupo DeltaSquad para nocountry
+
+Agregué nuevas librerías :v
