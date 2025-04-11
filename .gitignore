@@ -1,5 +1,0 @@
-*.csv
-*.zip
-venv/
-__pycache__/
-data/raw_data/ml-latest-small/
