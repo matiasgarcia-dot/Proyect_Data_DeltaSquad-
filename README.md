@@ -1,4 +1,5 @@
 # Proyect_Data_DeltaSquad-
+
 Proyecto de data del grupo DeltaSquad para nocountry
 
 # 🎬 Proyecto de Limpieza y Transformación de Datos de Películas
@@ -76,6 +77,3 @@ pip freeze > requirements.txt
 ⬜ Visualizaciones o dashboards
 
 ---
-
-
-
