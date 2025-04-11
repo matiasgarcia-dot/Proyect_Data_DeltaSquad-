@@ -14,9 +14,7 @@
 
 # 5- En el futuro: se procesan en logic.py y se muestran recomendaciones personalizadas.
 
-
-
-
+# main.py
 import tkinter as tk
 from controller import FilmIAController
 

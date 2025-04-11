@@ -1,15 +1,19 @@
+# paths.py
 """
-Para la siguiente lo podemos convertir en paquetes
-e importar las rutas de uno comun
-o mejor, mudarlo todo a la aplicacion la parte de recomendador :P
+Módulo para gestionar las rutas de archivos del proyecto
 """
 
+import os
 import pyprojroot
 
-
+# Obtener la ruta raíz del proyecto
 root_path = pyprojroot.here()
 
-processed_data =  root_path / 'data' / 'processed_data'
-knn_path =  processed_data / 'knn_model.joblib'
+# Definir rutas para los archivos de datos
+processed_data = root_path / 'data' / 'processed_data'
+knn_path = processed_data / 'knn_model.joblib'
 movies_output_path = processed_data / 'movies.feather'
 ratings_output_path = processed_data / 'ratings.feather'
+
+# Asegurar que el directorio de datos procesados existe
+os.makedirs(processed_data, exist_ok=True)

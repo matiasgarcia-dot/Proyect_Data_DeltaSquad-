@@ -27,7 +27,7 @@ class MainView:
         self.phrase_label = tk.Label(
             self.frame,
             text="¿No sabes qué ver esta noche?",
-            font=("Arial", 14),
+            font=("Arial", 18),
             bg="#ADD8E6",
             fg="#333333"
         )
@@ -38,7 +38,7 @@ class MainView:
         self.center_frame.pack(expand=True)
         
         # Título Imagen
-        logo_path= os.path.join("assets", "filmia_logo.png")
+        logo_path= os.path.join("assets", "logo_filmia.png")
         try:
             image = Image.open(logo_path)
             image = image.resize((600, 180), Image.Resampling.LANCZOS)
@@ -249,13 +249,8 @@ class MovieRatingView:
         )
         self.results_listbox.pack(fill=tk.X)
         
-        # Películas de ejemplo (para demostración)
-        self.example_movies = [
-            "El Padrino", "Titanic", "Star Wars: Episodio IV", 
-            "Jurassic Park", "El Señor de los Anillos", "Matrix",
-            "Forrest Gump", "Pulp Fiction", "El Rey León",
-            "Interestelar", "Inception", "Avatar"
-        ]
+        # Inicializar lista vacía de películas (se llenará en el método show)
+        self.example_movies = []
         
         # Sección de calificación
         self.rating_frame = tk.Frame(self.content_frame, bg="#ADD8E6")
@@ -350,13 +345,13 @@ class MovieRatingView:
         self.results_listbox.bind("<<ListboxSelect>>", self.on_select_movie)
     
     def on_search(self):
-        search_term = self.search_var.get().strip().lower()
+        """Busca películas que coincidan con el término de búsqueda"""
+        search_term = self.search_var.get().strip()
         self.results_listbox.delete(0, tk.END)
         
         if search_term:
-            # Filtrar películas que coincidan con el término de búsqueda
-            results = [movie for movie in self.example_movies 
-                      if search_term in movie.lower()]
+            # Usar el controlador para buscar películas en el dataset
+            results = self.controller.search_movies(search_term)
             
             if results:
                 for movie in results:
@@ -364,8 +359,9 @@ class MovieRatingView:
             else:
                 self.results_listbox.insert(tk.END, "No se encontraron resultados")
         else:
-            # Si no hay término de búsqueda, mostrar todas las películas
-            for movie in self.example_movies:
+            # Si no hay término de búsqueda, mostrar las primeras 20 películas
+            all_movies = self.controller.get_all_movies()[:20]
+            for movie in all_movies:
                 self.results_listbox.insert(tk.END, movie)
     
     def on_select_movie(self, event):
@@ -389,8 +385,16 @@ class MovieRatingView:
             # Se eliminó el mensaje emergente
     
     def on_next_click(self):
+        # Verificar si hay al menos una película calificada
+        if not self.controller.rated_movies:
+            messagebox.showwarning("Advertencia", "Por favor califica al menos una película antes de continuar")
+            return
+            
         # Ir a la pantalla de recomendaciones
-        self.controller.on_next_to_recommendations()
+        success = self.controller.on_next_to_recommendations()
+        
+        if not success:
+            messagebox.showwarning("Advertencia", "Por favor califica al menos una película antes de continuar")
     
     def on_submit_rating(self):
         movie = self.selected_movie_var.get()
@@ -421,9 +425,12 @@ class MovieRatingView:
         if self.controller.user_name:
             self.username_value.config(text=self.controller.user_name)
         
-        # Mostrar todas las películas al inicio
+        # Cargar la lista de películas desde el controlador
+        self.example_movies = self.controller.get_all_movies()
+        
+        # Mostrar las primeras 20 películas al inicio para no sobrecargar la UI
         self.results_listbox.delete(0, tk.END)
-        for movie in self.example_movies:
+        for movie in self.example_movies[:20]:
             self.results_listbox.insert(tk.END, movie)
     
     def hide(self):
